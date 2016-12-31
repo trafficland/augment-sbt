@@ -1,0 +1,51 @@
+server {
+    set $public_directory "{INSTALLATION_DIRECTORY}/public";
+    set $play_name "{NAME}";
+
+    listen       80 default_server;
+    server_name  _;
+
+    root $public_directory;
+
+    access_log  logs/$play_name.access.log;
+    error_log   logs/$play_name.error.log;
+
+    # static content (with client-side caching enabled)
+    location /assets/ {
+      access_log  off;
+      log_not_found off;
+      add_header  Pragma "public";
+      add_header  Cache-Control "public";
+      expires     30d;
+      alias $public_directory/;
+    }
+
+    location / {
+        try_files $uri @proxy;
+    }
+
+    location @proxy {
+        proxy_pass              http://localhost:9000;
+        proxy_redirect          off;
+        proxy_buffering         off;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    error_page  404              /404.html;
+
+    location = /404.html {
+        root   /usr/share/nginx/html;
+    }
+
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+}
