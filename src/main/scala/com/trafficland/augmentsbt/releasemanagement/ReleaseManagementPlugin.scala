@@ -7,6 +7,7 @@ import GitPlugin.autoImport._
 import sbt.complete.Parser
 import org.eclipse.jgit.lib.Repository
 import com.trafficland.augmentsbt._
+import com.trafficland.augmentsbt.git.GitPlugin.RemoteBranch
 import com.trafficland.augmentsbt.versionmanagement.{SemanticVersion, VersionManagementPlugin}
 
 import scala.language.postfixOps
@@ -17,10 +18,12 @@ object ReleaseManagementPlugin extends AutoPlugin {
 
   override lazy val requires: Plugins = GitPlugin && VersionManagementPlugin
 
+  override def globalSettings: Seq[_root_.sbt.Def.Setting[_]] = Seq(
+    remoteGitRepoPatterns := Seq.empty
+  )
+
   override lazy val projectSettings = Seq(
     isApp := true,
-
-    blessedRemotePattern := """^git@github.com:trafficland/.*\.git""".r,
 
     commands ++= Seq(releaseSnapshot(), releaseFinal()),
 
@@ -29,19 +32,20 @@ object ReleaseManagementPlugin extends AutoPlugin {
     SnapshotReleaseTasks.releasePublishLibSnapshotTasks,
     SnapshotReleaseTasks.releaseAppSnapshotTasks,
 
-    releaseReady <<= (gitIsCleanWorkingTree, gitTrackingBranch, gitDescribeBranches, gitShowAllTags, version, blessedRemotePattern, streams) map {
-      (isClean, maybeTrackingBranch, branches, tags, ver, remotePattern, stream) =>
+    releaseReady <<= (gitIsCleanWorkingTree, gitTrackingBranch, gitDescribeBranches, gitShowAllTags, version, remoteGitRepoPatterns, streams) map {
+      (isClean, maybeTrackingBranch, branches, tags, ver, remotePatterns, stream) =>
 
       val finalVersion = ver.toFinal.toReleaseFormat
-      stream.log.info("stable version %s".format(finalVersion))
+      stream.log.info(s"stable version $finalVersion")
+      stream.log.debug(s"remoteGitRepoPatterns = $remotePatterns.")
 
-      val masterRemote = {
+      val masterRemote: Option[RemoteBranch] = {
         for {
           master <- branches.find { case (branchName, _) => branchName == "master" }
           masterRemote <- master._2
         } yield masterRemote
       }
-      val masterOk = masterRemote.exists(r => r.branch == "master" && remotePattern.unapplySeq(r.remoteUri).isDefined)
+      val masterOk = masterRemote.exists(r => r.branch == "master" && remoteRepoCorrect(remotePatterns, r.remoteUri))
       val developOk = maybeTrackingBranch.exists(r => r.branch == "develop" && masterRemote.exists(_.remoteUri == r.remoteUri))
 
       // we don't release dirty trees
@@ -67,8 +71,10 @@ object ReleaseManagementPlugin extends AutoPlugin {
         true
       }
     }
-
   )
+
+  def remoteRepoCorrect(remoteRepoPatterns: Seq[Regex], repoURL: String): Boolean =
+    remoteRepoPatterns.exists( pattern => pattern.unapplySeq(repoURL).isDefined )
 
   object autoImport {
     val releaseReady: TaskKey[Boolean] = TaskKey[Boolean](
@@ -80,8 +86,8 @@ object ReleaseManagementPlugin extends AutoPlugin {
       "Used by the release commands to determine if the release should be published.  " +
         "If isApp is set to true (default) then the release will not be published.")
 
-    val blessedRemotePattern: SettingKey[Regex] = SettingKey[Regex](
-      "blessed-remote-pattern",
+    val remoteGitRepoPatterns: SettingKey[Seq[Regex]] = SettingKey[Seq[Regex]](
+      "remote-git-repo-patterns",
       "the pattern that the tracking remote must match to be considered acceptable for release"
     )
   }
