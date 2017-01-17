@@ -2,9 +2,10 @@ package com.trafficland.augmentsbt.utils
 
 import com.jcraft.jsch.agentproxy.Connector
 import com.jcraft.jsch.{JSch, Session}
+import com.trafficland.augmentsbt.ConsoleCredentialsProvider
 import org.eclipse.jgit.api.{TransportCommand, TransportConfigCallback}
 import org.eclipse.jgit.transport.OpenSshConfig.Host
-import org.eclipse.jgit.transport.{JschConfigSessionFactory, SshTransport, Transport}
+import org.eclipse.jgit.transport.{JschConfigSessionFactory, SshTransport, Transport, TransportHttp}
 import org.eclipse.jgit.util.FS
 
 object JGitExtensions {
@@ -15,6 +16,9 @@ object JGitExtensions {
           transport match {
             case sshTransport: SshTransport =>
               sshTransport.setSshSessionFactory(new SshAgentSessionFactory(connector))
+
+            case httpTransport: TransportHttp =>
+              httpTransport.setCredentialsProvider(new ConsoleCredentialsProvider())
           }
         }
       })
