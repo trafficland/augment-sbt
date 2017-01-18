@@ -18,7 +18,6 @@ object FinalReleaseTasks {
     "git-checkout-master",
     "git-merge-develop",
     "git-tag",
-    "git-push-origin",
     "git-checkout-develop",
     "versionBumpPatch",
     "versionToSnapshot",
@@ -38,13 +37,10 @@ object FinalReleaseTasks {
     "git-checkout-master",
     "git-merge-develop",
     "git-tag",
-    "git-push-origin",
     "git-checkout-develop",
     "versionBumpPatch",
     "versionToSnapshot",
     "git-version-bump-commit",
     "git-push-origin"
   )
-
 }
-

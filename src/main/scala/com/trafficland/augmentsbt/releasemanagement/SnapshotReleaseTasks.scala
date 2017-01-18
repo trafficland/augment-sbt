@@ -35,5 +35,4 @@ object SnapshotReleaseTasks {
     "git-version-bump-commit",
     "git-push-origin"
   )
-
 }
