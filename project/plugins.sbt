@@ -1,4 +1,5 @@
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.4")
+addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")
 
 libraryDependencies ++= Seq(
   "org.eclipse.jgit" % "org.eclipse.jgit" % "4.5.0.201609210915-r",
