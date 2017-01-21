@@ -20,7 +20,7 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
     scalaVersion                          := "2.10.6",
     scalacOptions                         := Seq("-deprecation", "-feature", "-encoding", "utf8"),
     resolvers                             += "Typesafe Maven Releases" at "http://repo.typesafe.com/typesafe/releases/",
-    remoteGitRepoPatterns                 ++= Seq("""^git@github.com:ereichert/.*\.git""".r, """^https://github.com/ereichert/.*\.git""".r),
+    remoteGitRepoPatterns                 ++= Seq("""^git@github.com:trafficland/.*\.git""".r, """^https://github.com/trafficland/.*\.git""".r),
     libraryDependencies                   ++= Seq(
       "org.scalatest" %% "scalatest" % "2.2.6" % "test",
       "org.mockito" % "mockito-all" % "1.9.5" % "test",
