@@ -128,8 +128,13 @@ object ReleaseManagementPlugin extends AutoPlugin {
       state.log.error("Attempting snapshot release but version is set to final version.")
 
     val correctIntendedVersion = releaseType.versionsMatch(currentVersion, intendedVersion)
-    if (!correctIntendedVersion)
-      state.log.error(s"Attempting snapshot release on version $intendedVersion but actual is $currentVersion")
+    if (!correctIntendedVersion){
+      intendedVersion match {
+        case Some(version) => state.log.error(s"The version you intend to release, $version, does not match the current version of the project, ${currentVersion.toFinal}.")
+
+        case _ => state.log.error(s"You did not specify the version you intend to release. E.g. > releaseFinal 0.99.0")
+      }
+    }
 
     if (validVersion && correctIntendedVersion) Project.runTask(releaseReady, state) match {
       // returned if releaseReady doesn't exist in the current state
