@@ -2,8 +2,8 @@ package com.trafficland.augmentsbt.utils
 
 import com.jcraft.jsch.agentproxy.Connector
 import com.jcraft.jsch.{JSch, Session}
-import com.trafficland.augmentsbt.ConsoleCredentialsProvider
 import org.eclipse.jgit.api.{TransportCommand, TransportConfigCallback}
+import org.eclipse.jgit.console.ConsoleCredentialsProvider
 import org.eclipse.jgit.transport.OpenSshConfig.Host
 import org.eclipse.jgit.transport.{JschConfigSessionFactory, SshTransport, Transport, TransportHttp}
 import org.eclipse.jgit.util.FS
