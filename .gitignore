@@ -32,7 +32,6 @@ atlassian-ide-plugin.xml
 .tf
 .scala_dependencies
 .settings/
-bin/
 .cache
 
 # OSX
