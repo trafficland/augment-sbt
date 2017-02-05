@@ -26,7 +26,10 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
       "org.mockito" % "mockito-all" % "1.9.5" % "test",
       "org.eclipse.jgit" % "org.eclipse.jgit" % "4.6.0.201612231935-r",
       "com.jcraft" % "jsch.agentproxy.sshagent" % "0.0.9",
-      "com.jcraft" % "jsch.agentproxy.usocket-jna" % "0.0.9"
+      "com.jcraft" % "jsch.agentproxy.usocket-jna" % "0.0.9",
+      "org.eclipse.jgit" % "org.eclipse.jgit.pgm" % "4.5.0.201609210915-r" exclude("javax.jms", "jms")
+                                                                           exclude("com.sun.jdmk", "jmxtools")
+                                                                           exclude("com.sun.jmx", "jmxri")
     ),
     commands                              += distSelf,
     keysFile                              <<= (resourceManaged in Compile)(new File(_, "AugmentSBTKeys.scala")),
