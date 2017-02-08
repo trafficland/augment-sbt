@@ -32,7 +32,7 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
                                                                            exclude("com.sun.jmx", "jmxri")
     ),
     commands                              += distSelf,
-    keysFile                              <<= (resourceManaged in Compile)(new File(_, "AugmentSBTKeys.scala")),
+    keysFile                              <<= (sourceDirectory in Compile)(new File(_, "scala/com/trafficland/augmentsbt/AugmentSBTKeys.scala")),
     generateKeysObject                    <<= (streams, keysFile) map { (out, targetFile) =>
       out.log.info(s"Generating $targetFile")
       out.log.info(s"keysFile: $keysFile")
