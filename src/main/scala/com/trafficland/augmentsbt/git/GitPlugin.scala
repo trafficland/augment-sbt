@@ -1,7 +1,8 @@
 package com.trafficland.augmentsbt.git
 
 import java.io.File
-import com.jcraft.jsch.agentproxy.Connector
+
+import com.jcraft.jsch.agentproxy.{AgentProxyException, Connector}
 import com.jcraft.jsch.agentproxy.connector.SSHAgentConnector
 import com.jcraft.jsch.agentproxy.usocket.JNAUSocketFactory
 import org.eclipse.jgit.api.Git
@@ -164,9 +165,19 @@ object GitPlugin extends AutoPlugin {
     },
 
     gitSshKeyAgent := {
-      val socketFactory = new JNAUSocketFactory()
-      val connector = new SSHAgentConnector(socketFactory)
-      Some(connector)
+      try {
+        val socketFactory = new JNAUSocketFactory()
+        val connector = new SSHAgentConnector(socketFactory)
+        Some(connector)
+      } catch {
+        case _: AgentProxyException =>
+          sLog.value.warn(
+            "Your SSH_AUTH_SOCK environment variable is not set. " +
+            "The Git Plugin and tasks that rely on the Git Plugin may not work in this configuration." +
+            "See http://blog.joncairns.com/2013/12/understanding-ssh-agent-and-ssh-add/ for more information."
+          )
+          None
+      }
     },
 
     gitPushOrigin <<= (gitSshKeyAgent, streams) map { (sshAgent, stream) =>
