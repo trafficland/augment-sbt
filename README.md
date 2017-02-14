@@ -23,7 +23,9 @@ Be sure to use the [latest launcher](http://www.scala-sbt.org/download.html).
 Using sbt 0.13.6+, add the following to your `project/plugins.sbt`
 
 ```scala
-resolvers += Resolver.jcenterRepo
+resolvers += Resolver.url("bintray-trafficland-sbt-plugins", url("https://dl.bintray.com/trafficland/sbt-plugins/"))(
+ Patterns(isMavenCompatible = false, Resolver.localBasePattern)
+)
 addSbtPlugin("com.trafficland" % "augmentsbt" % "1.0.0")
 ```
 
