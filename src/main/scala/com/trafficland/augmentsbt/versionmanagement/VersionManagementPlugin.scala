@@ -1,9 +1,9 @@
 package com.trafficland.augmentsbt.versionmanagement
 
+import scala.language.implicitConversions
 import sbt._
 import Keys._
 import java.util.regex.Pattern
-import com.trafficland.augmentsbt._
 
 object VersionManagementPlugin extends AutoPlugin {
   import autoImport._
@@ -25,6 +25,7 @@ object VersionManagementPlugin extends AutoPlugin {
   lazy val versionPatterns: Seq[Pattern] = versionRegexes.map(Pattern.compile)
 
   object autoImport {
+    implicit def toVersion(originalVersion: String): SemanticVersion = SemanticVersion.toVersion(originalVersion)
     val versionSettingRegexes: SettingKey[Seq[String]] = SettingKey[Seq[String]](
       "version-setting-regexes",
       "a list of regexes to use to replace versions"

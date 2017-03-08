@@ -7,7 +7,9 @@
 + Added new key `manageDaemonAccounts` which by default sets a linux script replacement. 
   In conjunction with the new script templates, this allows the user to specify if the daemon user and group should be 
   managed by the scripts. Defaults to false. 
-+ StartupScriptPlugin is now required by CentOSRPMPlugin and transitively StandardPluginSet as well. 
++ StartupScriptPlugin is now required by CentOSRPMPlugin and transitively StandardPluginSet as well.
++ Deprecate top level toVersion implicit, moving the functionality into the VersionManagementPlugin's autoImport. 
+  Projects using the .sbt format no longer need to import the implicit to use it. 
 
 ### 1.0.0
 

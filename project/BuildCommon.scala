@@ -1,4 +1,4 @@
-import com.trafficland.augmentsbt._
+import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin.autoImport.toVersion
 
 object BuildCommon {
 

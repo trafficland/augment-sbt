@@ -70,6 +70,10 @@ package com.trafficland.augmentsbt
   val isApp = ReleaseManagementPlugin.autoImport.isApp
   val remoteGitRepoPatterns = ReleaseManagementPlugin.autoImport.remoteGitRepoPatterns
 
+  /* CentOSRPMPlugin (from src/main/scala/com/trafficland/augmentsbt/rpm/CentOSRPMPlugin.scala) */
+  import com.trafficland.augmentsbt.rpm.CentOSRPMPlugin
+  val scriptsDirectory = CentOSRPMPlugin.autoImport.scriptsDirectory
+
   /* Keys (from src/main/scala/com/trafficland/augmentsbt/rpm/Keys.scala) */
   val vendorDirectory = com.trafficland.augmentsbt.rpm.Keys.vendorDirectory
   val destinationDirectory = com.trafficland.augmentsbt.rpm.Keys.destinationDirectory
@@ -78,10 +82,6 @@ package com.trafficland.augmentsbt
   val installedInitScriptName = com.trafficland.augmentsbt.rpm.Keys.installedInitScriptName
   val manageDaemonAccounts = com.trafficland.augmentsbt.rpm.Keys.manageDaemonAccounts
   val scriptTemplates = com.trafficland.augmentsbt.rpm.Keys.scriptTemplates
-
-  /* CentOSRPMPlugin (from src/main/scala/com/trafficland/augmentsbt/rpm/CentOSRPMPlugin.scala) */
-  import com.trafficland.augmentsbt.rpm.CentOSRPMPlugin
-  val scriptsDirectory = CentOSRPMPlugin.autoImport.scriptsDirectory
 
   /* VersionManagementPlugin (from src/main/scala/com/trafficland/augmentsbt/versionmanagement/VersionManagementPlugin.scala) */
   import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin
