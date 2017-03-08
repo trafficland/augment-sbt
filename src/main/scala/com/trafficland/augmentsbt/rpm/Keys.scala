@@ -1,6 +1,6 @@
 package com.trafficland.augmentsbt.rpm
 
-import sbt.SettingKey
+import sbt.{SettingKey, URL}
 
 object Keys {
   // vendor directory on target machine; defaults to /opt/$rpmVendor
@@ -13,4 +13,6 @@ object Keys {
   // the linux group to run the software under
   val linuxUserAndGroup: SettingKey[(String, String)] = SettingKey[(String, String)]("linux-user-and-group")
   val installedInitScriptName: SettingKey[String] = SettingKey[String]("installed-init-script-name")
+  val manageDaemonAccounts: SettingKey[Boolean] = SettingKey[Boolean]("manage-daemon-accounts", "Controls whether to create and remove the daemon user and group on install and uninstall")
+  val scriptTemplates: SettingKey[Map[String, URL]] = SettingKey[Map[String, URL]]("script-templates", "Mappings of RPM script type to its template")
 }

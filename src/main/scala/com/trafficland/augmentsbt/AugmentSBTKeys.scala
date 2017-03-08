@@ -14,6 +14,10 @@ package com.trafficland.augmentsbt
   val startScriptConfigFileName = StartupScriptPlugin.autoImport.startScriptConfigFileName
   val loggingConfigFileName = StartupScriptPlugin.autoImport.loggingConfigFileName
 
+  /* ConfigurationDirectory (from src/main/scala/com/trafficland/augmentsbt/generators/ConfigurationDirectory.scala) */
+  import com.trafficland.augmentsbt.generators.ConfigurationDirectory
+  val confDirectory = ConfigurationDirectory.autoImport.confDirectory
+
   /* AppInfoPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/AppInfoPlugin.scala) */
   import com.trafficland.augmentsbt.generators.AppInfoPlugin
   val appInfoPropertiesFileName = AppInfoPlugin.autoImport.appInfoPropertiesFileName
@@ -27,10 +31,6 @@ package com.trafficland.augmentsbt
   val buildInfoPropertiesWrite = BuildInfoPlugin.autoImport.buildInfoPropertiesWrite
   val buildInfoPropertiesFile = BuildInfoPlugin.autoImport.buildInfoPropertiesFile
   val generateBuildInfoClass = BuildInfoPlugin.autoImport.generateBuildInfoClass
-
-  /* ConfigurationDirectory (from src/main/scala/com/trafficland/augmentsbt/generators/ConfigurationDirectory.scala) */
-  import com.trafficland.augmentsbt.generators.ConfigurationDirectory
-  val confDirectory = ConfigurationDirectory.autoImport.confDirectory
 
   /* LogbackConfigurationPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/LogbackConfigurationPlugin.scala) */
   import com.trafficland.augmentsbt.generators.LogbackConfigurationPlugin
@@ -80,6 +80,8 @@ package com.trafficland.augmentsbt
   val installationDirectory = com.trafficland.augmentsbt.rpm.Keys.installationDirectory
   val linuxUserAndGroup = com.trafficland.augmentsbt.rpm.Keys.linuxUserAndGroup
   val installedInitScriptName = com.trafficland.augmentsbt.rpm.Keys.installedInitScriptName
+  val manageDaemonAccounts = com.trafficland.augmentsbt.rpm.Keys.manageDaemonAccounts
+  val scriptTemplates = com.trafficland.augmentsbt.rpm.Keys.scriptTemplates
 
   /* VersionManagementPlugin (from src/main/scala/com/trafficland/augmentsbt/versionmanagement/VersionManagementPlugin.scala) */
   import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin

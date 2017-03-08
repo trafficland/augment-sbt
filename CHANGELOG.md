@@ -1,5 +1,13 @@
 # Change Log
 
+### 1.0.1
++ Added new key `scriptTemplates`, which allows RPM scripts to be specified. 
+  The related keys from SBT Native Packager are no longer used as they don't allow for outright replacement of 
+  the scripts.
++ Added new key `manageDaemonAccounts` which by default sets a linux script replacement. 
+  In conjunction with the new script templates, this allows the user to specify if the daemon user and group should be 
+  managed by the scripts. Defaults to false.  
+
 ### 1.0.0
 
 + Update SBT to 0.13.12
