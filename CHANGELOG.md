@@ -6,7 +6,8 @@
   the scripts.
 + Added new key `manageDaemonAccounts` which by default sets a linux script replacement. 
   In conjunction with the new script templates, this allows the user to specify if the daemon user and group should be 
-  managed by the scripts. Defaults to false.  
+  managed by the scripts. Defaults to false. 
++ StartupScriptPlugin is now required by CentOSRPMPlugin and transitively StandardPluginSet as well. 
 
 ### 1.0.0
 
