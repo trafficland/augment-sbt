@@ -1,6 +1,8 @@
 # Change Log
 
 ### 1.0.1
+
++ Added support for cross builds to the release tasks. Specifically, the publish tasks will publish all cross builds now.
 + Added new key `scriptTemplates`, which allows RPM scripts to be specified. 
   The related keys from SBT Native Packager are no longer used as they don't allow for outright replacement of 
   the scripts.
