@@ -1,5 +1,9 @@
 # Change Log
 
+### 1.0.1
+
++ Added support for cross builds to the release tasks. Specifically, the publish tasks will publish all cross builds now.
+
 ### 1.0.0
 
 + Update SBT to 0.13.12

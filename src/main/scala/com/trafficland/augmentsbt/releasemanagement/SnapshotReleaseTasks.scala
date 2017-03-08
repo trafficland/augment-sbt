@@ -11,8 +11,8 @@ object SnapshotReleaseTasks {
 
   lazy val releasePublishLibSnapshotTasks: Setting[Seq[String]] = releasePublishLibSnapshotSettingKey := Seq(
     "release-ready",
-    "publish-local",
-    "publish",
+    "+publish-local",
+    "+publish",
     "versionWriteSnapshotRelease",
     "git-release-commit",
     "git-tag",
