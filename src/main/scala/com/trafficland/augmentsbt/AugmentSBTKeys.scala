@@ -25,19 +25,19 @@ package com.trafficland.augmentsbt
   val appInfoPropertiesFile = AppInfoPlugin.autoImport.appInfoPropertiesFile
   val generateAppInfoClass = AppInfoPlugin.autoImport.generateAppInfoClass
 
-  /* BuildInfoPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/BuildInfoPlugin.scala) */
-  import com.trafficland.augmentsbt.generators.BuildInfoPlugin
-  val buildInfoPropertiesFileName = BuildInfoPlugin.autoImport.buildInfoPropertiesFileName
-  val buildInfoPropertiesWrite = BuildInfoPlugin.autoImport.buildInfoPropertiesWrite
-  val buildInfoPropertiesFile = BuildInfoPlugin.autoImport.buildInfoPropertiesFile
-  val generateBuildInfoClass = BuildInfoPlugin.autoImport.generateBuildInfoClass
-
   /* LogbackConfigurationPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/LogbackConfigurationPlugin.scala) */
   import com.trafficland.augmentsbt.generators.LogbackConfigurationPlugin
   val generateLogbackConf = LogbackConfigurationPlugin.autoImport.generateLogbackConf
   val generateLogbackTestConf = LogbackConfigurationPlugin.autoImport.generateLogbackTestConf
   val logbackTargetFile = LogbackConfigurationPlugin.autoImport.logbackTargetFile
   val logbackTestTargetFile = LogbackConfigurationPlugin.autoImport.logbackTestTargetFile
+
+  /* BuildInfoPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/BuildInfoPlugin.scala) */
+  import com.trafficland.augmentsbt.generators.BuildInfoPlugin
+  val buildInfoPropertiesFileName = BuildInfoPlugin.autoImport.buildInfoPropertiesFileName
+  val buildInfoPropertiesWrite = BuildInfoPlugin.autoImport.buildInfoPropertiesWrite
+  val buildInfoPropertiesFile = BuildInfoPlugin.autoImport.buildInfoPropertiesFile
+  val generateBuildInfoClass = BuildInfoPlugin.autoImport.generateBuildInfoClass
 
   /* GitPlugin (from src/main/scala/com/trafficland/augmentsbt/git/GitPlugin.scala) */
   import com.trafficland.augmentsbt.git.GitPlugin

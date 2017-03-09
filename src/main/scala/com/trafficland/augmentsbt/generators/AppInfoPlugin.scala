@@ -4,10 +4,14 @@ import sbt._
 import sbt.Keys._
 import java.io.FileWriter
 import java.util.Properties
+
 import com.trafficland.augmentsbt.utils.SourceGenerator._
+import sbt.plugins.JvmPlugin
 
 object AppInfoPlugin extends AutoPlugin {
   import autoImport._
+
+  override def requires: Plugins = JvmPlugin
 
   object autoImport {
     val appInfoPropertiesFileName: SettingKey[String] = SettingKey[String](
@@ -40,7 +44,7 @@ object AppInfoPlugin extends AutoPlugin {
         out.log.info(s"Writing app info properties to $targetFile")
         writeAppInfoProperties(targetFile, appName, appVersion, orgName)
     },
-    resourceGenerators in Compile <+= appInfoPropertiesWrite,
+    resourceGenerators in Compile += appInfoPropertiesWrite.taskValue,
     generateAppInfoClass <<= (streams, normalizedName, version, organization, baseDirectory, appInfoPropertiesFile) map { (out, name, _, org, dir, file) =>
       val generated = fromResourceTemplate(s"$appInfoClassFileName.template", org, name)(dir / "src", appInfoClassFileName)(
         Seq[String => String](

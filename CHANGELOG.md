@@ -11,7 +11,8 @@
   managed by the scripts. Defaults to false. 
 + StartupScriptPlugin is now required by CentOSRPMPlugin and transitively StandardPluginSet as well.
 + Deprecate top level toVersion implicit, moving the functionality into the VersionManagementPlugin's autoImport. 
-  Projects using the .sbt format no longer need to import the implicit to use it. 
+  Projects using the .sbt format no longer need to import the implicit to use it.
++ Make generator plugins require the JvmPlugin so JvmPlugin doesn't override our resourceGenerator settings.
 
 ### 1.0.0
 
