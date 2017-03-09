@@ -1,8 +1,8 @@
 package com.trafficland.augmentsbt.releasemanagement
 
 import sbt.SettingKey
-import com.trafficland.augmentsbt._
 import com.trafficland.augmentsbt.versionmanagement.SemanticVersion
+import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin.autoImport._
 
 case class SnapshotRelease() extends ReleaseType() {
 

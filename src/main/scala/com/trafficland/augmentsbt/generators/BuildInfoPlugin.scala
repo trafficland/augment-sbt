@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat
 import com.trafficland.augmentsbt.git.GitPlugin
 import GitPlugin.autoImport._
 import com.trafficland.augmentsbt.utils.SourceGenerator._
+import sbt.plugins.JvmPlugin
 
 /* based on Twitter's BuildProperties:
    https://github.com/twitter/sbt-package-dist/blob/master/src/main/scala/com/twitter/sbt/BuildProperties.scala
@@ -17,7 +18,7 @@ import com.trafficland.augmentsbt.utils.SourceGenerator._
 object BuildInfoPlugin extends AutoPlugin {
   import autoImport._
 
-  override lazy val requires = GitPlugin
+  override lazy val requires: Plugins = GitPlugin && JvmPlugin
 
   object autoImport {
     val buildInfoPropertiesFileName: SettingKey[String] = SettingKey[String](

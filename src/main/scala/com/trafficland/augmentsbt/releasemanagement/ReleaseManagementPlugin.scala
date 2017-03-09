@@ -6,7 +6,6 @@ import com.trafficland.augmentsbt.git.GitPlugin
 import GitPlugin.autoImport._
 import sbt.complete.Parser
 import org.eclipse.jgit.lib.Repository
-import com.trafficland.augmentsbt._
 import com.trafficland.augmentsbt.git.GitPlugin.RemoteBranch
 import com.trafficland.augmentsbt.versionmanagement.{SemanticVersion, VersionManagementPlugin}
 
@@ -15,6 +14,7 @@ import scala.util.matching.Regex
 
 object ReleaseManagementPlugin extends AutoPlugin {
   import autoImport._
+  import VersionManagementPlugin.autoImport._
 
   override lazy val requires: Plugins = GitPlugin && VersionManagementPlugin
 

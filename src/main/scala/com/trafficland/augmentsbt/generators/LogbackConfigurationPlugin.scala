@@ -1,15 +1,18 @@
 package com.trafficland.augmentsbt.generators
 
 import sbt._
+
 import scala.collection.Seq
 import java.io.File
+
 import sbt.Keys._
 import ConfigurationDirectory.autoImport._
+import sbt.plugins.JvmPlugin
 
 object LogbackConfigurationPlugin extends AutoPlugin with FileGenerator {
   import autoImport._
 
-  override lazy val requires = ConfigurationDirectory
+  override lazy val requires: Plugins = ConfigurationDirectory && JvmPlugin
 
   object autoImport {
     val generateLogbackConf: TaskKey[Seq[File]] = TaskKey[Seq[File]](
