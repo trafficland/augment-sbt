@@ -6,7 +6,7 @@ import com.trafficland.augmentsbt.rpm.Keys._
 import com.typesafe.sbt.SbtNativePackager._
 import com.typesafe.sbt.packager.Keys._
 import com.typesafe.sbt.packager.archetypes.{JavaServerAppPackaging, TemplateWriter}
-import com.typesafe.sbt.packager.linux.LinuxSymlink
+import com.typesafe.sbt.packager.linux.{LinuxMappingDSL, LinuxSymlink}
 import com.typesafe.sbt.packager.rpm.RpmPlugin.autoImport.RpmConstants._
 import com.typesafe.sbt.packager.rpm.{RpmKeys, RpmPlugin}
 import sbt.Keys._
@@ -14,7 +14,7 @@ import sbt._
 
 import scala.util.control.Exception.nonFatalCatch
 
-object RPMPlugin extends AutoPlugin with RpmKeys {
+object RPMPlugin extends AutoPlugin with RpmKeys with LinuxMappingDSL {
 
   override def requires: Plugins = RpmPlugin && JavaServerAppPackaging
 
@@ -32,7 +32,9 @@ object RPMPlugin extends AutoPlugin with RpmKeys {
             LinuxSymlink(s"/etc/$vendorName", s"$installationDir/conf")
           )
       },
-
+      linuxPackageMappings <+= (installationDirectory, baseDirectory) map { (installationDir, baseDir) =>
+        packageMapping(baseDir -> s"$installationDir/conf")
+      },
       version in Rpm <<= version apply { v => v.replace("-", "") },
       rpmLicense := Some("Proprietary"),
       rpmGroup := Some("Applications/Services"),
