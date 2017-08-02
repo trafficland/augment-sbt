@@ -1,6 +1,7 @@
 package com.trafficland.augmentsbt
 
 import sbt._
+import com.trafficland.augmentsbt.debug.DebugPlugin
 import com.trafficland.augmentsbt.generators.GeneratorsPlugin
 import com.trafficland.augmentsbt.packagemanagement.PackageManagementPlugin
 import com.trafficland.augmentsbt.releasemanagement.ReleaseManagementPlugin
@@ -12,5 +13,6 @@ object StandardPluginSet extends AutoPlugin {
     ReleaseManagementPlugin &&
     ScalaConfigurationPlugin &&
     GeneratorsPlugin &&
-    TestPlugin
+    TestPlugin &&
+    DebugPlugin
 }

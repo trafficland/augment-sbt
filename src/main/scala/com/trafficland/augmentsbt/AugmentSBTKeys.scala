@@ -87,4 +87,8 @@ package com.trafficland.augmentsbt
   import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin
   val versionSettingRegexes = VersionManagementPlugin.autoImport.versionSettingRegexes
 
+  /* Keys (from src/main/scala/com/trafficland/augmentsbt/debug/Keys.scala) */
+  val debugPort = com.trafficland.augmentsbt.debug.Keys.debugPort
+  val debugWait = com.trafficland.augmentsbt.debug.Keys.debugWait
+
 }
