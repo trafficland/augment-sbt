@@ -74,6 +74,13 @@ Creates RPM targeting CentOS using the sbt-native-packager plugin underneath.
 
 Creates RPM targeting CentOS for Play projects using the sbt-native-packager plugin underneath.
 
+##### DebugPlugin
+
+Adds javaOptions to the run task as well as test and it scopes for debugging forked JVMs.
+Two system properties be set to control the debug options:
++ `augment.debug.port` The port the JVM listens on 
++ `augment.debug.wait` Whether to wait for a debugger to connect before starting the task
+
 ##### GeneratorsPlugin
 
 A convenience plugin for adding several of the generator plugins: AppInfoPlugin, BuildInfoPlugin, 
