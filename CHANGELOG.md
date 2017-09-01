@@ -1,5 +1,17 @@
 # Change Log
 
+### 1.1.1
+
++ Fix missing conf directory in PRM.
+
+### 1.1.0
+
++ Add TestPlugin. Enables IntegrationTest config, adds testcommon shared test code source directory.
++ Fix resource generator plugin dependencies.
++ Move toVersion implicit into VersionManagementPlugin's autoImport so projects no longer need to import it manually.Deprecate the original location.
++ Require StartupScriptPlugin in CentOSRPMPlugin so non-play projects get startup script options by default.
++ Include customized RPM scripts. Adds ability to specify if you want to add/remove the daemon user and group.
+
 ### 1.0.1
 
 + Added support for cross builds to the release tasks. Specifically, the publish tasks will publish all cross builds now.
