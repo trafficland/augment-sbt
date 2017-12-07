@@ -1,4 +1,4 @@
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.4")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.2")
 addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")
 
 libraryDependencies ++= Seq(

@@ -39,6 +39,6 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
       writeKeysObject(targetFile)
     },
     sourceGenerators in Compile           <+= generateKeysObject,
-    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.4"),
+    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.2"),
     addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.4.0")
   )
