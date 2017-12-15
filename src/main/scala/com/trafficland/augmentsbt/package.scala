@@ -11,7 +11,6 @@ package object augmentsbt {
   implicit def toVersion(originalVersion:String): SemanticVersion = VersionManagementPlugin.autoImport.toVersion(originalVersion)
   val isApp: SettingKey[Boolean] = releasemanagement.ReleaseManagementPlugin.autoImport.isApp
   val Git = git.GitPlugin
-  val PackageManagement = packagemanagement.PackageManagementPlugin
   val Play20 = play20.Play20Plugin
   val ReleaseManagement = releasemanagement.ReleaseManagementPlugin
   val ScalaConfiguration = scalaconfiguration.ScalaConfigurationPlugin

@@ -1,5 +1,8 @@
 # Change Log
 
+### 1.1.3
++ Remove unneeded PackageManagementPlugin.
+
 ### 1.1.1
 
 + Fix missing conf directory in PRM.
