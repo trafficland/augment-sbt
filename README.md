@@ -26,7 +26,7 @@ Using sbt 1.0.x, add the following to your `project/plugins.sbt`
 resolvers += Resolver.url("bintray-trafficland-sbt-plugins", url("https://dl.bintray.com/trafficland/sbt-plugins/"))(
  Patterns(isMavenCompatible = false, Resolver.localBasePattern)
 )
-addSbtPlugin("com.trafficland" % "augmentsbt" % "1.0.0")
+addSbtPlugin("com.trafficland" % "augmentsbt" % "1.2.0")
 ```
 
 This will add JCenter (the [analog to maven central for bintray](https://bintray.com/bintray/jcenter)) 
