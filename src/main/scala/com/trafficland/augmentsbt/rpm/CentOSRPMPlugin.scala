@@ -20,7 +20,7 @@ object CentOSRPMPlugin extends AutoPlugin {
   }
 
   override def projectSettings = Seq(
-    scriptsDirectory <<= baseDirectory apply { bd => bd / "scripts" },
+    scriptsDirectory := baseDirectory.value / "scripts" ,
     defaultLinuxInstallLocation := vendorDirectory.value,
     rpmBrpJavaRepackJars := true, // Upstream issue: Setting this to true disables repacking of jars, contrary to its name
     serverLoading in Rpm := Some(ServerLoader.Systemd)

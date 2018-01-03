@@ -33,20 +33,20 @@ object StartupScriptPlugin extends AutoPlugin {
     startScriptJavaOptions := Seq.empty,
     startScriptMainArguments := Seq.empty,
     daemonUser in Linux := "coreservices",
-    rpmDaemonLogFile := "stdout.log",
+    daemonStdoutLogFile := Some("stdout.log"),
     defaultLinuxLogsLocation := s"/var/log/${rpmVendor.value}",
     startScriptConfigFileName := "prod.conf",
     loggingConfigFileName := Some("logback.xml"),
     executableScriptName := "start",
-    bashScriptExtraDefines <++= (loggingConfigFileName, startScriptJavaOptions, startScriptConfigFileName, startScriptMainArguments) map { (logOpt, extraOpts, config, mainArgs) =>
-      val loggingArgOpt = logOpt.map { log =>
+    bashScriptExtraDefines ++= {
+      val loggingArgOpt = loggingConfigFileName.value.map { log =>
         s"-Dlogback.configurationFile=$$app_home/../conf/$log"
       }
-      val configArg = s"-Dconfig.file=$$app_home/../conf/$config"
-      val javaArgs = extraOpts ++ loggingArgOpt :+ configArg
+      val configArg = s"-Dconfig.file=$$app_home/../conf/${startScriptConfigFileName.value}"
+      val javaArgs = startScriptJavaOptions.value ++ loggingArgOpt :+ configArg
 
       val addJavaArgs = javaArgs.map(arg => s"addJava $arg")
-      val addMainArgs = mainArgs.map(arg => s"addApp $arg")
+      val addMainArgs = startScriptMainArguments.value.map(arg => s"addApp $arg")
 
       addMainArgs ++ addJavaArgs
     }

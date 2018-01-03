@@ -7,38 +7,12 @@ package com.trafficland.augmentsbt
  */
  object AugmentSBTKeys {
 
-  /* ReleaseManagementPlugin (from src/main/scala/com/trafficland/augmentsbt/releasemanagement/ReleaseManagementPlugin.scala) */
-  import com.trafficland.augmentsbt.releasemanagement.ReleaseManagementPlugin
-  val releaseReady = ReleaseManagementPlugin.autoImport.releaseReady
-  val isApp = ReleaseManagementPlugin.autoImport.isApp
-  val remoteGitRepoPatterns = ReleaseManagementPlugin.autoImport.remoteGitRepoPatterns
-
   /* StartupScriptPlugin (from src/main/scala/com/trafficland/augmentsbt/distribute/StartupScriptPlugin.scala) */
   import com.trafficland.augmentsbt.distribute.StartupScriptPlugin
   val startScriptMainArguments = StartupScriptPlugin.autoImport.startScriptMainArguments
   val startScriptJavaOptions = StartupScriptPlugin.autoImport.startScriptJavaOptions
   val startScriptConfigFileName = StartupScriptPlugin.autoImport.startScriptConfigFileName
   val loggingConfigFileName = StartupScriptPlugin.autoImport.loggingConfigFileName
-
-  /* Keys (from src/main/scala/com/trafficland/augmentsbt/rpm/Keys.scala) */
-  val vendorDirectory = com.trafficland.augmentsbt.rpm.Keys.vendorDirectory
-  val destinationDirectory = com.trafficland.augmentsbt.rpm.Keys.destinationDirectory
-  val installationDirectory = com.trafficland.augmentsbt.rpm.Keys.installationDirectory
-  val linuxUserAndGroup = com.trafficland.augmentsbt.rpm.Keys.linuxUserAndGroup
-  val installedInitScriptName = com.trafficland.augmentsbt.rpm.Keys.installedInitScriptName
-  val manageDaemonAccounts = com.trafficland.augmentsbt.rpm.Keys.manageDaemonAccounts
-  val scriptTemplates = com.trafficland.augmentsbt.rpm.Keys.scriptTemplates
-
-  /* CentOSRPMPlugin (from src/main/scala/com/trafficland/augmentsbt/rpm/CentOSRPMPlugin.scala) */
-  import com.trafficland.augmentsbt.rpm.CentOSRPMPlugin
-  val scriptsDirectory = CentOSRPMPlugin.autoImport.scriptsDirectory
-
-  /* LogbackConfigurationPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/LogbackConfigurationPlugin.scala) */
-  import com.trafficland.augmentsbt.generators.LogbackConfigurationPlugin
-  val generateLogbackConf = LogbackConfigurationPlugin.autoImport.generateLogbackConf
-  val generateLogbackTestConf = LogbackConfigurationPlugin.autoImport.generateLogbackTestConf
-  val logbackTargetFile = LogbackConfigurationPlugin.autoImport.logbackTargetFile
-  val logbackTestTargetFile = LogbackConfigurationPlugin.autoImport.logbackTestTargetFile
 
   /* AppInfoPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/AppInfoPlugin.scala) */
   import com.trafficland.augmentsbt.generators.AppInfoPlugin
@@ -58,9 +32,12 @@ package com.trafficland.augmentsbt
   import com.trafficland.augmentsbt.generators.ConfigurationDirectory
   val confDirectory = ConfigurationDirectory.autoImport.confDirectory
 
-  /* VersionManagementPlugin (from src/main/scala/com/trafficland/augmentsbt/versionmanagement/VersionManagementPlugin.scala) */
-  import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin
-  val versionSettingRegexes = VersionManagementPlugin.autoImport.versionSettingRegexes
+  /* LogbackConfigurationPlugin (from src/main/scala/com/trafficland/augmentsbt/generators/LogbackConfigurationPlugin.scala) */
+  import com.trafficland.augmentsbt.generators.LogbackConfigurationPlugin
+  val generateLogbackConf = LogbackConfigurationPlugin.autoImport.generateLogbackConf
+  val generateLogbackTestConf = LogbackConfigurationPlugin.autoImport.generateLogbackTestConf
+  val logbackTargetFile = LogbackConfigurationPlugin.autoImport.logbackTargetFile
+  val logbackTestTargetFile = LogbackConfigurationPlugin.autoImport.logbackTestTargetFile
 
   /* GitPlugin (from src/main/scala/com/trafficland/augmentsbt/git/GitPlugin.scala) */
   import com.trafficland.augmentsbt.git.GitPlugin
@@ -86,5 +63,28 @@ package com.trafficland.augmentsbt
   val gitLastCommitsCount = GitPlugin.autoImport.gitLastCommitsCount
   val gitLastCommits = GitPlugin.autoImport.gitLastCommits
   val gitSshKeyAgent = GitPlugin.autoImport.gitSshKeyAgent
+
+  /* ReleaseManagementPlugin (from src/main/scala/com/trafficland/augmentsbt/releasemanagement/ReleaseManagementPlugin.scala) */
+  import com.trafficland.augmentsbt.releasemanagement.ReleaseManagementPlugin
+  val releaseReady = ReleaseManagementPlugin.autoImport.releaseReady
+  val isApp = ReleaseManagementPlugin.autoImport.isApp
+  val remoteGitRepoPatterns = ReleaseManagementPlugin.autoImport.remoteGitRepoPatterns
+
+  /* CentOSRPMPlugin (from src/main/scala/com/trafficland/augmentsbt/rpm/CentOSRPMPlugin.scala) */
+  import com.trafficland.augmentsbt.rpm.CentOSRPMPlugin
+  val scriptsDirectory = CentOSRPMPlugin.autoImport.scriptsDirectory
+
+  /* Keys (from src/main/scala/com/trafficland/augmentsbt/rpm/Keys.scala) */
+  val vendorDirectory = com.trafficland.augmentsbt.rpm.Keys.vendorDirectory
+  val destinationDirectory = com.trafficland.augmentsbt.rpm.Keys.destinationDirectory
+  val installationDirectory = com.trafficland.augmentsbt.rpm.Keys.installationDirectory
+  val linuxUserAndGroup = com.trafficland.augmentsbt.rpm.Keys.linuxUserAndGroup
+  val installedInitScriptName = com.trafficland.augmentsbt.rpm.Keys.installedInitScriptName
+  val manageDaemonAccounts = com.trafficland.augmentsbt.rpm.Keys.manageDaemonAccounts
+  val scriptTemplates = com.trafficland.augmentsbt.rpm.Keys.scriptTemplates
+
+  /* VersionManagementPlugin (from src/main/scala/com/trafficland/augmentsbt/versionmanagement/VersionManagementPlugin.scala) */
+  import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin
+  val versionSettingRegexes = VersionManagementPlugin.autoImport.versionSettingRegexes
 
 }

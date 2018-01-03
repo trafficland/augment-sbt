@@ -4,6 +4,7 @@ import sbt._
 import sbt.Keys.{sourceDirectory, unmanagedSourceDirectories}
 import sbt.plugins.JvmPlugin
 import sbt.{AutoPlugin, Configuration, Def, Defaults, IntegrationTest, Test, inConfig}
+import Path.rebase
 
 object TestPlugin extends AutoPlugin {
   import autoImport._

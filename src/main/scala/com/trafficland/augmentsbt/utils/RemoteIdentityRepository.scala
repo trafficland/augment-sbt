@@ -1,8 +1,7 @@
 package com.trafficland.augmentsbt.utils
 
 import java.util
-
-import scala.collection.convert.decorateAsJava.asJavaCollectionConverter
+import collection.JavaConverters._
 import com.jcraft.jsch.agentproxy.{AgentProxy, Buffer, Connector}
 import com.jcraft.jsch.{Identity, IdentityRepository}
 

@@ -33,14 +33,10 @@ object LogbackConfigurationPlugin extends AutoPlugin with FileGenerator {
   }
 
   override lazy val projectSettings = Seq(
-    logbackTargetFile <<= confDirectory(_ / "logback.xml"),
-    logbackTestTargetFile <<= confDirectory(_ / "logback-test.xml"),
-    generateLogbackConf <<= (streams, normalizedName, logbackTargetFile) map { (out, name, tf) =>
-      generate(out, "logback.xml.template", normalizedNameModification(name), tf)
-    },
-    generateLogbackTestConf <<= (streams, normalizedName, logbackTestTargetFile) map { (out, name, tf) =>
-      generate(out, "logback-test.xml.template", normalizedNameModification(name), tf)
-    }
+    logbackTargetFile := confDirectory(_ / "logback.xml").value,
+    logbackTestTargetFile := confDirectory(_ / "logback-test.xml").value,
+    generateLogbackConf := generate(streams.value, "logback.xml.template", normalizedNameModification(normalizedName.value), logbackTargetFile.value),
+    generateLogbackTestConf := generate(streams.value, "logback-test.xml.template", normalizedNameModification(normalizedName.value), logbackTestTargetFile.value)
   )
 
 }

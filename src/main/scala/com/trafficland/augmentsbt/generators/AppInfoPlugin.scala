@@ -37,22 +37,22 @@ object AppInfoPlugin extends AutoPlugin {
   }
 
   override lazy val projectSettings = Seq(
-    appInfoPropertiesFileName <<= name { n => s"$n-appinfo.properties" },
-    appInfoPropertiesFile <<= (resourceManaged in Compile, appInfoPropertiesFileName) { (d, fn) => new File(d, fn) },
-    appInfoPropertiesWrite <<= (streams, appInfoPropertiesFile, name, version, organizationName) map {
-      (out, targetFile, appName, appVersion, orgName) =>
-        out.log.info(s"Writing app info properties to $targetFile")
-        writeAppInfoProperties(targetFile, appName, appVersion, orgName)
+    appInfoPropertiesFileName := s"${name.value}-appinfo.properties",
+    appInfoPropertiesFile := new File((resourceManaged in Compile).value, appInfoPropertiesFileName.value),
+    appInfoPropertiesWrite := {
+        streams.value.log.info(s"Writing app info properties to ${appInfoPropertiesFile.value}")
+        writeAppInfoProperties(appInfoPropertiesFile.value, name.value, version.value, organizationName.value)
     },
     resourceGenerators in Compile += appInfoPropertiesWrite.taskValue,
-    generateAppInfoClass <<= (streams, normalizedName, version, organization, baseDirectory, appInfoPropertiesFile) map { (out, name, _, org, dir, file) =>
-      val generated = fromResourceTemplate(s"$appInfoClassFileName.template", org, name)(dir / "src", appInfoClassFileName)(
+    generateAppInfoClass := {
+      val log = streams.value.log
+      val generated = fromResourceTemplate(s"$appInfoClassFileName.template", organization.value, normalizedName.value)(baseDirectory.value / "src", appInfoClassFileName)(
         Seq[String => String](
-          _.replace("{PACKAGE}", s"$org.${sanitizeName(name)}"),
-          _.replace("{APPINFOPROPERTIES}", file.getName)
+          _.replace("{PACKAGE}", s"${organization.value}.${sanitizeName(normalizedName.value)}"),
+          _.replace("{APPINFOPROPERTIES}", appInfoPropertiesFile.value.getName)
         )
       )
-      generated.foreach(f => out.log.info(s"Generated $f"))
+      generated.foreach(f => log.info(s"Generated $f"))
       generated
     }
   )

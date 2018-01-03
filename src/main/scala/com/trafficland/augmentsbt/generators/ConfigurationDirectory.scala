@@ -12,6 +12,6 @@ object ConfigurationDirectory extends AutoPlugin {
   }
   
   override lazy val projectSettings = Seq(
-    confDirectory <<= baseDirectory apply { bd => bd / "conf"}
+    confDirectory := baseDirectory.value / "conf"
   )
 }
