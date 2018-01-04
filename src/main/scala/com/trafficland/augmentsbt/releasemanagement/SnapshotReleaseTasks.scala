@@ -10,15 +10,15 @@ object SnapshotReleaseTasks {
   )
 
   lazy val releasePublishLibSnapshotTasks: Setting[Seq[String]] = releasePublishLibSnapshotSettingKey := Seq(
-    "release-ready",
-    "+publish-local",
+    "releaseReady",
+    "+publishLocal",
     "+publish",
     "versionWriteSnapshotRelease",
-    "git-release-commit",
-    "git-tag",
+    "gitReleaseCommit",
+    "gitTag",
     "versionToSnapshot",
-    "git-version-bump-commit",
-    "git-push-origin"
+    "gitVersionBumpCommit",
+    "gitPushOrigin"
   )
 
   lazy val releaseAppSnapshotSettingKey: SettingKey[Seq[String]] = SettingKey[Seq[String]] (
@@ -27,12 +27,12 @@ object SnapshotReleaseTasks {
   )
 
   lazy val releaseAppSnapshotTasks: Setting[Seq[String]] = releaseAppSnapshotSettingKey := Seq(
-    "release-ready",
+    "releaseReady",
     "versionWriteSnapshotRelease",
-    "git-release-commit",
-    "git-tag",
+    "gitReleaseCommit",
+    "gitTag",
     "versionToSnapshot",
-    "git-version-bump-commit",
-    "git-push-origin"
+    "gitVersionBumpCommit",
+    "gitPushOrigin"
   )
 }
