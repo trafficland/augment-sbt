@@ -11,10 +11,8 @@ object Play20Plugin extends AutoPlugin {
 
   override val projectSettings = Seq(
     bashScriptExtraDefines += "addJava -Dplay.server.pidfile.path=/dev/null",
-    bashScriptExtraDefines <++= loggingConfigFileName map { loggerConfigOpt =>
-      loggerConfigOpt.map { loggerConfig =>
+    bashScriptExtraDefines ++= loggingConfigFileName.value.map { loggerConfig =>
         s"addJava -Dlogger.file=conf/$loggerConfig" :: Nil
       }.getOrElse(Nil)
-    }
   )
 }

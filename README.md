@@ -9,24 +9,24 @@ use this project's code as a guide and a good foundation.
 
 ## General Usage
 
-augment-sbt targets sbt 0.13.6+.
+augment-sbt targets sbt 1.0.x.
 
 You will need to add the following to your `project/build.properties` 
 file if you have multiple versions of sbt installed
 
-    sbt.version=0.13.x // where x is greater or equal to 6
+    sbt.version=1.0.x
 
 Be sure to use the [latest launcher](http://www.scala-sbt.org/download.html).
 
 ### Getting AUGMENT-SBT.
 
-Using sbt 0.13.6+, add the following to your `project/plugins.sbt`
+Using sbt 1.0.x, add the following to your `project/plugins.sbt`
 
 ```scala
 resolvers += Resolver.url("bintray-trafficland-sbt-plugins", url("https://dl.bintray.com/trafficland/sbt-plugins/"))(
  Patterns(isMavenCompatible = false, Resolver.localBasePattern)
 )
-addSbtPlugin("com.trafficland" % "augmentsbt" % "1.0.0")
+addSbtPlugin("com.trafficland" % "augmentsbt" % "1.2.0")
 ```
 
 This will add JCenter (the [analog to maven central for bintray](https://bintray.com/bintray/jcenter)) 
@@ -38,7 +38,7 @@ augment-sbt is self referential so the best place to see a real world example of
 in the root of the project.
 
 To get up and running quickly you can enable the 
-[StandardPluginSet](https://github.com/ereichert/augment-sbt/blob/master/src/main/scala/com/trafficland/augmentsbt/StandardPluginSet.scala).
+[StandardPluginSet](https://github.com/trafficland/augment-sbt/blob/master/src/main/scala/com/trafficland/augmentsbt/StandardPluginSet.scala).
 Since the augment-sbt plugins are 
 [AutoPlugins](http://www.scala-sbt.org/release/docs/Plugins.html) typically you would enable the `StandardPluginSet`
 by adding the following project definition to a `build.sbt` file in your project.
@@ -99,9 +99,9 @@ Modifies some of the default settings in the official Play plugin.
 
 Handles snapshot (releaseSnapshot) and final (releaseFinal *version*) releases with a single command at the SBT CLI. 
 The tasks run by the release commands and the order in which they are run can be read at 
-[releaseSnapshot](https://github.com/ereichert/augment-sbt/blob/master/src/main/scala/com/trafficland/augmentsbt/releasemanagement/SnapshotReleaseTasks.scala)
+[releaseSnapshot](https://github.com/trafficland/augment-sbt/blob/master/src/main/scala/com/trafficland/augmentsbt/releasemanagement/SnapshotReleaseTasks.scala)
 and 
-[releaseFinal](https://github.com/ereichert/augment-sbt/blob/master/src/main/scala/com/trafficland/augmentsbt/releasemanagement/FinalReleaseTasks.scala).
+[releaseFinal](https://github.com/trafficland/augment-sbt/blob/master/src/main/scala/com/trafficland/augmentsbt/releasemanagement/FinalReleaseTasks.scala).
 
 ##### RPMPlugin
 

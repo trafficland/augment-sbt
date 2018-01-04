@@ -1,5 +1,0 @@
-#!/bin/bash
-scriptdir=`dirname $0`
-src=$scriptdir/../src
-
-ruby $scriptdir/generate-keys.rb $src

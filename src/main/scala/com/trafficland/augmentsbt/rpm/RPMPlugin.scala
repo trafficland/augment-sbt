@@ -2,7 +2,7 @@ package com.trafficland.augmentsbt.rpm
 
 import java.nio.charset.Charset
 
-import com.trafficland.augmentsbt.rpm.Keys._
+import com.trafficland.augmentsbt.AugmentSBTKeys._
 import com.typesafe.sbt.SbtNativePackager._
 import com.typesafe.sbt.packager.Keys._
 import com.typesafe.sbt.packager.archetypes.{JavaServerAppPackaging, TemplateWriter}
@@ -24,31 +24,29 @@ object RPMPlugin extends AutoPlugin with RpmKeys with LinuxMappingDSL {
 
   override lazy val projectSettings: Seq[Def.Setting[_]] =
     Seq(
-      name in Rpm <<= name apply { n => n },
-      linuxPackageSymlinks <<= (installationDirectory, rpmVendor, name in Rpm) map { (installationDir, v, n) =>
-          val vendorName = s"$v/$n"
+      name in Rpm := name.value,
+      linuxPackageSymlinks := {
+          val vendorName = s"${installationDirectory.value}/${(name in Rpm).value}"
           Seq(
-            LinuxSymlink(s"$installationDir/logs", s"/var/log/$vendorName"),
-            LinuxSymlink(s"/etc/$vendorName", s"$installationDir/conf")
+            LinuxSymlink(s"${installationDirectory.value}/logs", s"/var/log/$vendorName"),
+            LinuxSymlink(s"/etc/$vendorName", s"${installationDirectory.value}/conf")
           )
       },
-      linuxPackageMappings <+= (installationDirectory, baseDirectory) map { (installationDir, baseDir) =>
-        packageMapping(baseDir -> s"$installationDir/conf")
-      },
-      version in Rpm <<= version apply { v => v.replace("-", "") },
+      linuxPackageMappings += packageMapping(baseDirectory.value -> s"${installationDirectory.value}/conf"),
+      version in Rpm := version.value.replace("-", ""),
       rpmLicense := Some("Proprietary"),
       rpmGroup := Some("Applications/Services"),
       rpmRelease := "1",
       linuxUserAndGroup := ("nobody", "nobody"),
-      vendorDirectory <<= rpmVendor apply { rv => "/opt/" + rv },
-      installationDirectory <<= (vendorDirectory, destinationDirectory) apply { (vd, dd) => vd + Path.sep + dd },
-      destinationDirectory <<= (name in Rpm) apply { n => n }
+      vendorDirectory := s"/opt/${rpmVendor.value}",
+      installationDirectory := vendorDirectory.value + Path.sep + destinationDirectory.value,
+      destinationDirectory := (name in Rpm).value
     ) ++ inConfig(Rpm)(Seq(
       manageDaemonAccounts := false,
       scriptTemplates in Rpm := defaultScriptTemplates(getClass.getResource("")),
-      linuxScriptReplacements <+= manageDaemonAccounts {
+      linuxScriptReplacements += manageDaemonAccounts {
         Names.ManageDaemonAccounts -> _.toString
-      },
+      }.value,
       maintainerScripts in Rpm := {
         val scripts = makeMaintainerScripts(scriptTemplates.value, linuxScriptReplacements.value)
         if (rpmBrpJavaRepackJars.value) {

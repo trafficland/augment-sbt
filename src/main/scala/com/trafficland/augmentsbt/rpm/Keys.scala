@@ -2,7 +2,7 @@ package com.trafficland.augmentsbt.rpm
 
 import sbt.{SettingKey, URL}
 
-object Keys {
+trait Keys {
   // vendor directory on target machine; defaults to /opt/$rpmVendor
   val vendorDirectory: SettingKey[String] = SettingKey[String]("vendor-directory")
   // destination directory on target machine as a child of the vendor-directory setting

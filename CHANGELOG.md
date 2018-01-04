@@ -1,5 +1,8 @@
 # Change Log
 
+### 1.2.0
++ Upgrade to SBT 1.0 and Scala 2.12
+
 ### 1.1.3
 + Remove unneeded PackageManagementPlugin.
 

@@ -10,14 +10,11 @@ object CentOSPlayRPMPlugin extends AutoPlugin {
   override def requires: Plugins = CentOSRPMPlugin && Play20Plugin
 
   override def projectSettings = Seq(
-    mappings in Universal <<= (mappings in Universal, confDirectory) map { (m, confDir) =>
-      // conf files are deployed by fabric and should not be included in the RPM
-      // ideally, we would manipulate the playExternalizedResources key here however we cannot access it without
-      // depending on the play plugin which we're trying to avoid as it would tie the sbt plugin to the play version
-
-      m.filterNot { case (src, _) =>
-        confDir.relativize(src).isDefined
-      }
+    // conf files are deployed by fabric and should not be included in the RPM
+    // ideally, we would manipulate the playExternalizedResources key here however we cannot access it without
+    // depending on the play plugin which we're trying to avoid as it would tie the sbt plugin to the play version
+    mappings in Universal := (mappings in Universal).value.filterNot { case (src, _) =>
+      confDirectory.value.relativize(src).isDefined
     }
   )
 }

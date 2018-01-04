@@ -6,6 +6,10 @@ import Keys._
 import java.util.regex.Pattern
 
 object VersionManagementPlugin extends AutoPlugin {
+
+  object autoImport extends VersionManagementKeys {
+    implicit def toVersion(originalVersion: String): SemanticVersion = SemanticVersion.toVersion(originalVersion)
+  }
   import autoImport._
 
   override lazy val projectSettings = Seq(
@@ -24,13 +28,7 @@ object VersionManagementPlugin extends AutoPlugin {
   lazy val versionRegexes = Seq("""\b(lib|app)?Version.+=\s*("(.*?)")""", """\bversion\s+:=\s*("(.*?)")""")
   lazy val versionPatterns: Seq[Pattern] = versionRegexes.map(Pattern.compile)
 
-  object autoImport {
-    implicit def toVersion(originalVersion: String): SemanticVersion = SemanticVersion.toVersion(originalVersion)
-    val versionSettingRegexes: SettingKey[Seq[String]] = SettingKey[Seq[String]](
-      "version-setting-regexes",
-      "a list of regexes to use to replace versions"
-    )
-  }
+
 
   def versionBumpMajor: Command = Command.command(
     "versionBumpMajor",
