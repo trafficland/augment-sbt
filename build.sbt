@@ -1,5 +1,4 @@
 import sbt._
-import KeyGenerator._
 import BuildCommon._
 import com.trafficland.augmentsbt.distribute.SelfDistributor.distSelf
 import com.trafficland.augmentsbt.AugmentSBTKeys.remoteGitRepoPatterns
@@ -32,13 +31,6 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
                                                                            exclude("com.sun.jmx", "jmxri")
     ),
     commands                              += distSelf,
-    keysFile := (sourceDirectory in Compile)(new File(_, "scala/com/trafficland/augmentsbt/AugmentSBTKeys.scala")).value,
-    generateKeysObject := {
-      streams.value.log.info(s"Generating ${keysFile.value}")
-      streams.value.log.info(s"keysFile: $keysFile")
-      writeKeysObject(keysFile.value)
-    },
-    sourceGenerators in Compile           += generateKeysObject,
     addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.2"),
     addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.4.3")
   )

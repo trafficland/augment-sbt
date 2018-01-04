@@ -7,17 +7,15 @@ import com.typesafe.sbt.SbtNativePackager.Rpm
 import com.trafficland.augmentsbt.distribute.StartupScriptPlugin
 
 import scala.collection.Seq
-import com.trafficland.augmentsbt.rpm.Keys._
+import com.trafficland.augmentsbt.AugmentSBTKeys._
 import com.typesafe.sbt.packager.archetypes.systemloader.ServerLoader
 
 object CentOSRPMPlugin extends AutoPlugin {
-  import autoImport._
 
   override def requires: Plugins = RPMPlugin && StartupScriptPlugin
 
-  object autoImport {
-    val scriptsDirectory: SettingKey[File] = SettingKey[File]("scripts-directory")
-  }
+  object autoImport extends CentOSRPMKeys
+  import autoImport._
 
   override def projectSettings = Seq(
     scriptsDirectory := baseDirectory.value / "scripts" ,

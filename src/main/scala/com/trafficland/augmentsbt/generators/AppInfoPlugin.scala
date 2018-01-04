@@ -9,32 +9,11 @@ import com.trafficland.augmentsbt.utils.SourceGenerator._
 import sbt.plugins.JvmPlugin
 
 object AppInfoPlugin extends AutoPlugin {
-  import autoImport._
 
   override def requires: Plugins = JvmPlugin
 
-  object autoImport {
-    val appInfoPropertiesFileName: SettingKey[String] = SettingKey[String](
-      "app-info-properties-file-name",
-      "filename used to build the appInfoPropertiesFile setting"
-    )
-    val appInfoClassFileName = "AppInfo.scala"
-
-    val appInfoPropertiesWrite: TaskKey[Seq[File]] = TaskKey[Seq[File]](
-      "app-info-properties-write",
-      "writes the application properties file in managed resources"
-    )
-
-    val appInfoPropertiesFile: SettingKey[File] = SettingKey[File](
-      "app-info-properties-file",
-      "path to the appinfo.properties file (will end up as a child under managed resources)"
-    )
-
-    val generateAppInfoClass: TaskKey[Seq[File]] = TaskKey[Seq[File]](
-      "generate-app-info-class",
-      "generates the AppInfo.scala file"
-    )
-  }
+  object autoImport extends AppInfoKeys
+  import autoImport._
 
   override lazy val projectSettings = Seq(
     appInfoPropertiesFileName := s"${name.value}-appinfo.properties",

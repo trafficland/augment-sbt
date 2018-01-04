@@ -3,16 +3,18 @@ package com.trafficland.augmentsbt.releasemanagement
 import sbt._
 import Keys._
 import com.trafficland.augmentsbt.git.GitPlugin
-import GitPlugin.autoImport.{gitShowAllTags, _}
 import sbt.complete.Parser
 import org.eclipse.jgit.lib.Repository
 import com.trafficland.augmentsbt.git.GitPlugin.RemoteBranch
 import com.trafficland.augmentsbt.versionmanagement.{SemanticVersion, VersionManagementPlugin}
+import com.trafficland.augmentsbt.AugmentSBTKeys._
 
 import scala.language.postfixOps
 import scala.util.matching.Regex
 
 object ReleaseManagementPlugin extends AutoPlugin {
+
+  object autoImport extends ReleaseManagementKeys
   import autoImport._
   import VersionManagementPlugin.autoImport._
 
@@ -76,21 +78,7 @@ object ReleaseManagementPlugin extends AutoPlugin {
   def remoteRepoCorrect(remoteRepoPatterns: Seq[Regex], repoURL: String): Boolean =
     remoteRepoPatterns.exists( pattern => pattern.unapplySeq(repoURL).isDefined )
 
-  object autoImport {
-    val releaseReady: TaskKey[Boolean] = TaskKey[Boolean](
-      "release-ready",
-      "checks to see if current source tree and project can be published"
-    )
 
-    val isApp: SettingKey[Boolean] = SettingKey[Boolean]("is-app",
-      "Used by the release commands to determine if the release should be published.  " +
-        "If isApp is set to true (default) then the release will not be published.")
-
-    val remoteGitRepoPatterns: SettingKey[Seq[Regex]] = SettingKey[Seq[Regex]](
-      "remote-git-repo-patterns",
-      "the pattern that the tracking remote must match to be considered acceptable for release"
-    )
-  }
 
   def releaseSnapshot(): Command = Command.command(
     "releaseSnapshot",

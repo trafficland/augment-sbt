@@ -2,7 +2,7 @@ package com.trafficland.augmentsbt.rpm
 
 import java.nio.charset.Charset
 
-import com.trafficland.augmentsbt.rpm.Keys._
+import com.trafficland.augmentsbt.AugmentSBTKeys._
 import com.typesafe.sbt.SbtNativePackager._
 import com.typesafe.sbt.packager.Keys._
 import com.typesafe.sbt.packager.archetypes.{JavaServerAppPackaging, TemplateWriter}
