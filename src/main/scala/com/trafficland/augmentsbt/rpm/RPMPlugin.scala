@@ -26,7 +26,7 @@ object RPMPlugin extends AutoPlugin with RpmKeys with LinuxMappingDSL {
     Seq(
       name in Rpm := name.value,
       linuxPackageSymlinks := {
-          val vendorName = s"${installationDirectory.value}/${(name in Rpm).value}"
+          val vendorName = s"${rpmVendor.value}/${(name in Rpm).value}"
           Seq(
             LinuxSymlink(s"${installationDirectory.value}/logs", s"/var/log/$vendorName"),
             LinuxSymlink(s"/etc/$vendorName", s"${installationDirectory.value}/conf")
