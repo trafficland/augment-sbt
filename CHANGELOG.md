@@ -1,5 +1,8 @@
 # Change Log
 
+### 1.2.1
++ Properly create symlinks in RPM plugin.
+
 ### 1.2.0
 + Upgrade to SBT 1.0 and Scala 2.12
 + Remove key generation.
