@@ -86,7 +86,7 @@ object VersionManagementPlugin extends AutoPlugin {
       Seq(buildBaseDirectory / ".." / "build.sbt")
 
     val matchers = versionRegexes.map(Pattern.compile)
-    files.find(_.exists).foreach { file =>
+    files.filter(_.exists).foreach { file =>
       state.log.info("Setting version %s in file %s".format(changeRequest.newVersionFormatToWrite, file))
       writeNewVersion(file, matchers, changeRequest)
     }
