@@ -1,5 +1,8 @@
 # Change Log
 
+### 1.2.2
++ Scan all build files when updating version numbers.
+
 ### 1.2.1
 + Properly create symlinks in RPM plugin.
 
