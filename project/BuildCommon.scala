@@ -3,5 +3,5 @@ import com.trafficland.augmentsbt.versionmanagement.VersionManagementPlugin.auto
 object BuildCommon {
 
   val pluginName: String = "augmentsbt"
-  val libVersion: String = "1.2.2".toReleaseFormat
+  val libVersion: String = "1.2.3-SNAPSHOT".toReleaseFormat
 }
