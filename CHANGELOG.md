@@ -1,5 +1,8 @@
 # Change Log
 
+### 1.2.3
++ Bump to SBT 1.1.1.
+
 ### 1.2.2
 + Scan all build files when updating version numbers.
 
