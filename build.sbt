@@ -16,7 +16,7 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
     publishMavenStyle                     := false,
     bintrayRepository                     := "sbt-plugins",
     bintrayOrganization                   := Some("trafficland"),
-    scalaVersion                          := "2.12.4",
+    scalaVersion                          := "2.12.10",
     scalacOptions                         := Seq("-deprecation", "-feature", "-encoding", "utf8"),
     resolvers                             += "Typesafe Maven Releases" at "http://repo.typesafe.com/typesafe/releases/",
     remoteGitRepoPatterns                 ++= Seq("""^git@github.com:trafficland/.*\.git""".r, """^https://github.com/trafficland/.*\.git""".r),
@@ -31,6 +31,6 @@ lazy val trafficlandSbtPluginProject = Project(pluginName, file("."))
                                                                            exclude("com.sun.jmx", "jmxri")
     ),
     commands                              += distSelf,
-    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.2"),
-    addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.4.3")
+    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.6.1"),
+    addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.4.4")
   )

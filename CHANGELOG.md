@@ -1,5 +1,10 @@
 # Change Log
 
+### 1.2.4
++ Update SBT to 1.3.8
++ Update Native Packager to 1.6.1
++ Use `packageName` key for directories instead of `name` to be consistent with native packager 
+
 ### 1.2.3
 + Bump to SBT 1.1.1.
 
