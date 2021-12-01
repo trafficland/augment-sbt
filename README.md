@@ -23,13 +23,13 @@ Be sure to use the [latest launcher](http://www.scala-sbt.org/download.html).
 Using sbt 1.0.x, add the following to your `project/plugins.sbt`
 
 ```scala
-resolvers += Resolver.url("bintray-trafficland-sbt-plugins", url("https://dl.bintray.com/trafficland/sbt-plugins/"))(
+resolvers += Resolver.url("trafficland-augment-sbt", url("https://maven.pkg.github.com/trafficland/augment-sbt"))(
  Patterns(isMavenCompatible = false, Resolver.localBasePattern)
 )
 addSbtPlugin("com.trafficland" % "augmentsbt" % "1.2.0")
 ```
 
-This will add JCenter (the [analog to maven central for bintray](https://bintray.com/bintray/jcenter)) 
+This will add the project maven repository
 to your resolver chain as well as download and install augment-sbt. 
 
 ### Using AUGMENT-SBT
